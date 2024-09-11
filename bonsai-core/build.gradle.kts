@@ -3,9 +3,14 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.compose")
     id("com.vanniktech.maven.publish")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 kotlinMultiplatform()
+
+android {
+    namespace = "cafe.adriel.bonsai.core"
+}
 
 kotlin {
     sourceSets {

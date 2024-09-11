@@ -46,9 +46,6 @@ fun Project.kotlinMultiplatform(
             val androidMain by getting {
                 dependsOn(jvmMain)
             }
-            val androidTest by getting {
-                dependsOn(jvmTest)
-            }
 
             val desktopMain by getting {
                 dependsOn(jvmMain)

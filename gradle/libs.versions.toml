@@ -1,15 +1,15 @@
 [versions]
-plugin-android = "7.1.3"
+plugin-android = "8.2.2"
 plugin-ktlint = "10.2.1"
 plugin-detekt = "1.20.0-RC1"
 plugin-maven = "0.18.0"
 
-kotlin = "1.8.22"
+kotlin = "2.0.0"
 okio = "3.0.0"
 serialization = "1.5.1"
 
-compose = "1.4.8"
-composeMultiplatform = "1.4.3"
+compose = "1.6.7"
+composeMultiplatform = "1.6.11"
 composeActivity = "1.7.2"
 composeVoyager = "1.0.0-beta16"
 material = "1.4.3"
@@ -31,6 +31,7 @@ compose-material = { module = "androidx.compose.material:material", version.ref 
 compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "material" }
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
 compose-voyager = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "composeVoyager" }
+compose-compiler = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version = "2.0.20" }
 
 [bundles]
-plugins = ["plugin-android", "plugin-ktlint", "plugin-detekt", "plugin-maven", "plugin-kotlin", "plugin-serialization", "plugin-compose-multiplatform"]
+plugins = ["plugin-android", "plugin-ktlint", "plugin-detekt", "plugin-maven", "plugin-kotlin", "plugin-serialization", "plugin-compose-multiplatform", "compose-compiler"]

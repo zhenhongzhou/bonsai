@@ -9,6 +9,7 @@ android {
     defaultConfig {
         applicationId "cafe.adriel.bonsai.sample"
     }
+    namespace = "cafe.adriel.bonsai.sample"
 }
 
 dependencies {
