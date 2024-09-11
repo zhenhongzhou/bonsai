@@ -1,6 +1,5 @@
 package cafe.adriel.bonsai.sample.tree
 
-import android.os.Build
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Adb
 import androidx.compose.material.icons.outlined.Android
@@ -14,31 +13,27 @@ import androidx.compose.material.icons.outlined.Memory
 import androidx.compose.material.icons.outlined.Mic
 import androidx.compose.material.icons.outlined.Videocam
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.platform.LocalContext
 import cafe.adriel.bonsai.core.Bonsai
 import cafe.adriel.bonsai.core.node.BranchNode
 import cafe.adriel.bonsai.core.tree.Tree
 import cafe.adriel.bonsai.filesystem.FileSystemBonsaiStyle
 import cafe.adriel.bonsai.filesystem.FileSystemTree
 import okio.Path
+import cafe.adriel.bonsai.sample.getDefaultDataFolderPath
+import okio.FileSystem
+import okio.SYSTEM
 
 object FileSystemTreeScreen : TreeScreen<Path> {
 
+    private const val EXTENSION_SEPARATOR = '.'
     override val title = "File System Tree"
 
     @Composable
     override fun composeTree(): Tree<Path> {
-        val context = LocalContext.current
-        val rootDirectory = remember {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) context.dataDir
-            else context.codeCacheDir
-        }
-
-        return FileSystemTree(rootDirectory, selfInclude = true)
+        return FileSystemTree(getDefaultDataFolderPath(), FileSystem.SYSTEM, selfInclude = true)
     }
 
     @Composable
@@ -67,7 +62,7 @@ object FileSystemTreeScreen : TreeScreen<Path> {
     @Composable
     private fun getIcon(path: Path, default: ImageVector) =
         rememberVectorPainter(
-            when (path.toFile().extension) {
+            when (path.getExtension()) {
                 "apk" -> Icons.Outlined.Android
                 "jar" -> Icons.Outlined.LocalCafe
                 "studio" -> Icons.Outlined.Adb
@@ -79,4 +74,7 @@ object FileSystemTreeScreen : TreeScreen<Path> {
                 else -> default
             }
         )
+
+    private fun Path.getExtension() = name.substringAfterLast(EXTENSION_SEPARATOR, "")
+
 }

@@ -5,14 +5,14 @@ plugin-detekt = "1.20.0-RC1"
 plugin-maven = "0.18.0"
 
 kotlin = "2.0.0"
-okio = "3.0.0"
+okio = "3.9.0"
 serialization = "1.5.1"
 
 compose = "1.6.7"
 composeMultiplatform = "1.6.11"
 composeActivity = "1.7.2"
-composeVoyager = "1.0.0-beta16"
-material = "1.4.3"
+composeVoyager = "1.1.0-beta02"
+kotlinx-coroutines = "1.8.1"
 
 [libraries]
 plugin-android = { module = "com.android.tools.build:gradle", version.ref = "plugin-android" }
@@ -22,13 +22,11 @@ plugin-maven = { module = "com.vanniktech:gradle-maven-publish-plugin", version.
 plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 plugin-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 plugin-compose-multiplatform = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "composeMultiplatform" }
+kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 
-compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose" }
-compose-material = { module = "androidx.compose.material:material", version.ref = "material" }
-compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "material" }
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
 compose-voyager = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "composeVoyager" }
 compose-compiler = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version = "2.0.20" }

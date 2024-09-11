@@ -1,31 +1,32 @@
 package cafe.adriel.bonsai.sample.tree
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import bonsai.sample.generated.resources.Res
 import cafe.adriel.bonsai.core.Bonsai
 import cafe.adriel.bonsai.core.tree.Tree
 import cafe.adriel.bonsai.json.JsonBonsaiStyle
 import cafe.adriel.bonsai.json.JsonTree
-import cafe.adriel.bonsai.sample.R
 import kotlinx.serialization.json.JsonElement
-import okio.buffer
-import okio.source
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 
 object JsonTreeScreen : TreeScreen<JsonElement> {
 
     override val title = "JSON Tree"
-
+    @OptIn(ExperimentalResourceApi::class)
     @Composable
     override fun composeTree(): Tree<JsonElement> {
-        val context = LocalContext.current
-        val json = context
-            .resources
-            .openRawResource(R.raw.response)
-            .source()
-            .buffer()
-            .readString(Charsets.UTF_8)
-
+        var json by remember {
+            mutableStateOf("{}")
+        }
+        LaunchedEffect(Unit) {
+            json = Res.readBytes("files/response.json").decodeToString()
+        }
         return JsonTree(json)
     }
 
