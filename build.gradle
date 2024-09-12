@@ -18,6 +18,10 @@ subprojects {
             sonatypeHost = "S01"
         }
     }
+    tasks.withType(AbstractPublishToMaven) { AbstractPublishToMaven publishTask ->
+        def signingTasks = tasks.withType(Sign)
+        publishTask.mustRunAfter(signingTasks)
+    }
     detekt {
         config = files("../detekt.yml")
         parallel = true
